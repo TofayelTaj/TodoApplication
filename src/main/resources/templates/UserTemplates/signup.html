@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#" th:href="@{/}">TODO APP</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+        </div>
+
+
+        <a class="btn btn-outline mx-3 text-white" th:href="@{/login}">Login</a>
+        <a class="btn btn-outline mx-3 text-white active" th:href="@{/user/signup}">User Registration</a>
+        <a class="btn btn-outline text-white" th:href="@{/supervisor/signup}">Supervisor Registration</a>
+
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3 mt-5 shadow-lg p-4">
+
+            <h2 class="text-center text-primary">Register New User</h2>
+
+            <div th:unless="${error == null}">
+                <div class="alert alert-danger" role="alert">
+                    <p th:text="${error}"></p>
+                </div>
+            </div>
+
+            <form action="" th:method="post" th:action="@{/user/signup}">
+
+                <div class="mb-3">
+                    <label for="userName" class="form-label">User Name</label>
+                    <input type="text" name="name" class="form-control" id="userName" placeholder="Name">
+                </div>
+
+                <div class="mb-3">
+                    <label for="userEmail" class="form-label">User Email</label>
+                    <input type="email" name="email" class="form-control" id="userEmail" placeholder="Email">
+                </div>
+
+                 <div class="mb-3">
+                    <label for="userPassword" class="form-label">User Password</label>
+                    <input type="password" name="password" class="form-control" id="userPassword" placeholder="Password">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Select Supervisor</label>
+                    <select name="supervisor"  class="form-select"  >
+                        <div th:each="supervisor : ${allSupervisor}">
+                            <option selected th:text="${supervisor.getName()} " th:value="${supervisor.getId()}" ></option>
+                        </div>
+                    </select>
+                </div>
+
+                <div class="mb-3 text-center">
+                    <button type="submit" class="btn btn-primary p-2 ">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>

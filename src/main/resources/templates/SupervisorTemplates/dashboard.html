@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#" th:href="@{/supervisor/dashboard}">TODO APP</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link btn btn-outline text-white" aria-current="page" th:href="@{/supervisor/dashboard}" href="#">Dashboard</a>
+                </li>
+            </ul>
+        </div>
+        <a class="btn btn-outline mx-3 text-white" th:href="@{/logout}">Logout</a>
+    </div>
+</nav>
+
+<div class="container mt-5 p-3">
+
+    <div class="row">
+        <div class="text-center">
+            <h5>Filter By Date or Name</h5>
+        </div>
+        <div class="col-2 offset-2">
+
+            <form action="" th:action="@{/supervisor/dashboard}" th:method="get">
+                <div class="mb-3">
+                <input type="date" class="form-control" name="date">
+                </div>
+                <button class="btn btn-primary" type="submit">Filter</button>
+            </form>
+
+        </div>
+
+        <div class="col-2 offset-4">
+            <form action="" th:action="@{/supervisor/dashboard}" th:method="get">
+
+                <div class="mb-3">
+                    <select name="userId" id="" class="form-control">
+                        <option selected value="">None</option>
+                        <div th:each="user : ${allUser}">
+                            <option th:value="${user.getId()}" th:text="${user.getName()}"></option>
+                        </div>
+                    </select>
+                </div>
+                <button class="btn btn-primary" type="submit">Show</button>
+            </form>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+
+        <div class="col-12 mt-5 p-3">
+
+            <h5 class="text-center">All Todo</h5>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+
+                    <td>Id</td>
+                    <td>Name</td>
+                    <td>Description</td>
+                    <td>Status</td>
+                    <td>Action</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="todo : ${allTodo}">
+                    <td th:text="${todo.getId()}"></td>
+                    <td th:text="${todo.name}" />
+                    <td th:text="${todo.description}" />
+                    <td th:text="${todo.status}" />
+
+                    <td th:with="tId = ${todo.getId()}">
+
+                        <form th:action="@{/supervisor/status}" th:method="get">
+
+                            <input type="hidden" name="todoId" th:value="${tId}">
+
+                            <select name="status" class="form-control" >
+                                <option selected value="">Select</option>
+                                <div th:each="s : ${status}">
+                                    <option th:value="${s.name()}" th:text="${s.name()}"></option>
+                                </div>
+                            </select>
+
+                            <div class="mt-1">
+                                <button type="submit" class="btn btn-sm  btn-primary">Save</button>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+</body>
+</html>

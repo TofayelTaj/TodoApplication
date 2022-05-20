@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#" th:href="@{/user/dashboard}">TODO APP</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item mx-2">
+                    <a class="nav-link btn btn-outline text-white active " aria-current="page" th:href="@{/todo/create}" href="#">Add New TODO</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link  btn btn-outline text-white" aria-current="page" th:href="@{/user/dashboard}" href="#">Dashboard</a>
+                </li>
+            </ul>
+        </div>
+        <a class="btn btn-outline mx-3 text-white" th:href="@{/logout}">Logout</a>
+
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-6 offset-3 p-3 mt-5 shadow-lg">
+
+            <div class="text-center">
+                <h1 class="text-muted text-primary">Create New Todo</h1>
+            </div>
+
+
+            <form action="" th:action="@{/todo/save}" th:method="post">
+
+                <div class="mb-3">
+                    <label for="todoName" class="form-label">Todo Name</label>
+                    <input type="text" name="name" class="form-control" id="todoName" placeholder="Todo Name">
+                </div>
+
+                <div class="mb-3 form-floating">
+                    <textarea class="form-control" name="description" id="" cols="30" rows="30"></textarea>
+                    <label  class="form-label">Todo Description</label>
+                </div>
+
+                <div class="mb-3 text-center">
+                   <button type="submit" class="btn btn-primary">Add Todo</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+</body>
+</html>
